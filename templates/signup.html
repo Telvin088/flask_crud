@@ -1,12 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Signup</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login & Signup</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .transition-transform {
+      transition: transform 0.6s ease-in-out;
+    }
+    .form-container {
+      min-width: 50%;
+      transition: all 0.6s ease-in-out;
+    }
+  </style>
 </head>
-<body>
-  
+<body class="h-screen flex items-center justify-center bg-gray-100">
+
+  <div id="container" class="relative w-[900px] h-[550px] bg-white rounded-2xl shadow-2xl overflow-hidden flex">
+    <!-- Login Form -->
+    <div class="form-container flex flex-col justify-center items-center w-1/2 px-8" id="loginForm">
+      <h2 class="text-3xl font-bold mb-6">Login</h2>
+      <form class="w-full flex flex-col gap-4">
+        <input type="text" placeholder="Username" class="px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-400"/>
+        <input type="password" placeholder="Password" class="px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-400"/>
+        <button type="submit" class="bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition">Login</button>
+      </form>
+    </div>
+
+    <!-- Signup Form -->
+    <div class="form-container hidden flex-col justify-center items-center w-1/2 px-8" id="signupForm">
+      <h2 class="text-3xl font-bold mb-6">Sign Up</h2>
+      <form class="w-full flex flex-col gap-4">
+        <input type="text" placeholder="Username" class="px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-400"/>
+        <input type="email" placeholder="Email" class="px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-400"/>
+        <input type="password" placeholder="Password" class="px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-400"/>
+        <input type="password" placeholder="Confirm Password" class="px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-400"/>
+        <button type="submit" class="bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition">Sign Up</button>
+      </form>
+    </div>
+
+    <!-- Welcome Panel (Right) -->
+    <div class="absolute right-0 top-0 h-full w-1/2 bg-indigo-600 text-white flex flex-col justify-center items-center p-10 transition-transform" id="rightPanel">
+      <h2 class="text-3xl font-bold mb-4">Welcome Back!</h2>
+      <p class="mb-6 text-center">Do not have an account? Sign up and join us today!</p>
+      <button id="signupBtn" class="border-2 border-white py-2 px-6 rounded-full hover:bg-white hover:text-indigo-600 transition">Sign Up</button>
+    </div>
+
+    <!-- Welcome Panel (Left) -->
+    <div class="absolute left-0 top-0 h-full w-1/2 bg-indigo-600 text-white flex flex-col justify-center items-center p-10 transition-transform -translate-x-full" id="leftPanel">
+      <h2 class="text-3xl font-bold mb-4">Hello, Friend!</h2>
+      <p class="mb-6 text-center">Already have an account? Login and continue exploring!</p>
+      <button id="loginBtn" class="border-2 border-white py-2 px-6 rounded-full hover:bg-white hover:text-indigo-600 transition">Login</button>
+    </div>
+  </div>
+
+  <script>
+    const container = document.getElementById("container");
+    const loginForm = document.getElementById("loginForm");
+    const signupForm = document.getElementById("signupForm");
+    const leftPanel = document.getElementById("leftPanel");
+    const rightPanel = document.getElementById("rightPanel");
+    const signupBtn = document.getElementById("signupBtn");
+    const loginBtn = document.getElementById("loginBtn");
+
+    signupBtn.addEventListener("click", () => {
+      loginForm.classList.add("hidden");
+      signupForm.classList.remove("hidden");
+      rightPanel.classList.add("translate-x-full");
+      leftPanel.classList.remove("-translate-x-full");
+    });
+
+    loginBtn.addEventListener("click", () => {
+      signupForm.classList.add("hidden");
+      loginForm.classList.remove("hidden");
+      rightPanel.classList.remove("translate-x-full");
+      leftPanel.classList.add("-translate-x-full");
+    });
+  </script>
+
 </body>
 </html>
